@@ -1,0 +1,27 @@
+<!-- 任务
+试一试，创建二维数组(一维长度3，二维长度6)，值为一维数组和二维数组索引值的积，如myarr[2][5]=2*5。
+在右边编辑器的script标签内，创建该二维数组。 -->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>二维数组</title>
+  <script type="text/javascript">
+    var myarr = new Array(3);
+    for (let i = 0; i < myarr.length; i++) {
+      myarr[i] = new Array(6);
+    }
+    for (i = 0; i < myarr.length; i++) {
+      for (let j = 0; j < myarr[i].length; j++) {
+        myarr[i][j] = i * j;
+      }
+    }
+    document.write(myarr)
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

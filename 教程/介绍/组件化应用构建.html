@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>1.4组件化应用构建</title>
+  </head>
+  <body>
+    <div id = 'test7'>
+        <!--
+  现在我们为每个 todo-item 提供 todo 对象
+  todo 对象是变量，即其内容可以是动态的。
+  我们也需要为每个组件提供一个“key”，稍后再
+  作详细解释。
+-->
+<ol>
+  <todo-item v-for='item in goList'
+  v-bind:test7='item'
+  v-bind:key = 'item.id'>
+  </todo-item>
+</ol>
+    </div>
+
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    Vue.component('todo-item',{
+      props:['test7'],
+      template: '<li>{{test7.text}}</li>'
+    })
+    var app7 = new Vue({
+      el: '#test7',
+      data:{
+        goList:[
+        {id: 0, text:'vegetable'},
+        {id: 1, text:'cola'},
+        {id: 2, text:'noddles'}
+      ]
+  }
+    })
+  </script>
+</html>

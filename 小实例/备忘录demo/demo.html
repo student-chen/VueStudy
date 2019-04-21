@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>备忘录demo</title>
+  <style media="screen" type="text/css">
+    div {
+      width: 600px;
+      margin: 30px auto;
+    }
+
+    .inputtext {
+      /*此元素将显示为块级元素，此元素前后会带有换行符。*/
+      display: block;
+      line-height: 20px;
+      padding-left: 20px;
+      /*圆角边框*/
+      border-radius: 20px;
+      border: 2px solid #ccc;
+      /*边框投影*/
+      box-shadow: 0 0 2px blue;
+    }
+
+    li {
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    .delete {
+      display: inline-block;
+      position: relative;
+      left: 300px;
+      border: 0;
+      padding: 5px 10px;
+      border-radius: 50px;
+      font-size: 10px;
+    }
+    .deleteList
+    {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='app'>
+    <p>
+      建立一个简单的待办事项记事本<br>
+      在输入框输入待办事件，回车添加到下方，勾选复选框更改待办事项完成状态<br>
+      点击删除删除该事项<br>
+      用我们学过的指令 v-model @ v-if和 methods 创建一个 Vue 实例;<br>
+    </p>
+    <input type="text" placeholder="输入待办事项" class="inputtext" v-model='item.content' @keydown.enter='addTask'>
+    <!--  @keydown.enter='addTask'> -->
+
+    <h3>待办事项：</h3>
+    <ul>
+      <li v-for='(item,index) in list' :key='index'>
+        <input type="checkbox" :checked='item.finished' @click='changeState(index)'>
+        <span>{{item.content}}<span>
+        <button type="button" @click='removeList(1,index)' class="delete">Delete</button>
+      </li>
+    </ul>
+    <p v-if='list.length===0'>空</p>
+
+    <!-- <p>
+      <li v-for='(item,index) in list' :key='index'>
+        <span>
+          content: {{list[index].content}}
+          finished: {{list[index].finished}}
+          delete: {{list[index].delete}}
+        </span>
+      </li>
+    </p>
+
+    <p>
+      <li v-for='(item,index) in finishedList' :key='index'>
+        <span>
+          content: {{finishedList[index].content}}
+          finished: {{finishedList[index].finished}}
+          delete: {{finishedList[index].delete}}
+        </span>
+      </li>
+    </p> -->
+
+    <h3>已完成事项：</h3>
+    <ul>
+      <li v-for='(item,index) in finishedList' :key='index' class="finished">
+        <input type="checkbox" :checked='item.finished'>
+        <span>{{item.content}}<span>
+        <button type="button" @click='removeList(2,index)' class="delete">Delete</button>
+      </li>
+    </ul>
+    <p v-if='finishedList.length===0'>空</p>
+
+    <h3>回收站：</h3>
+    <ul>
+      <li v-for='(item,index) in deletedList' :key='index' class="deleteList">
+        <h4 v-if='item.finished===true'>✔ {{item.content}}</h4>
+        <h4 v-else>× {{item.content}}</h4>
+      </li>
+    </ul>
+    <p v-if='deletedList.length===0'>空</p>
+  </div>
+</body>
+<script src="C:\Users\lh\github\VueStudy\vue.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      //数据格式items
+      item: {
+        content: '',
+        finished: false,
+        delete: false
+      },
+      list: [],
+      finishedList: [],
+      deletedList: []
+    },
+    //列表
+    methods: {
+      //第一个方法，添加task
+      addTask() {
+        this.list.push(this.item);
+        this.item = {
+          content: '',
+          finished: false,
+          delete: false
+        };
+      },
+      //第二个方法 改变状态
+      changeState(index) {
+        let curstate = this.list[index].finished;
+        this.list[index].finished = !curstate;
+        if(this.list[index].finished==true)
+        {
+          this.finishedList.push(this.list[index]);
+          this.list.splice(index,1);
+        }
+      },
+      //删除后存入deletedList
+      removeList(listtype,index) {
+        if(listtype==1)
+        {
+          this.deletedList.push(this.list[index]);
+          this.list.splice(index, 1);
+        }
+        else {
+          this.deletedList.push(this.finishedList[index]);
+          this.finishedList.splice(index, 1);
+        }
+      }
+    }
+  })
+  console.log(vm.$options.data);
+</script>
+
+</html>

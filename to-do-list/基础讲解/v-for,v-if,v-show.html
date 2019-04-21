@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>v-if，v-for,v-show</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  </head>
+  <body>
+    <div id="root">
+      两个的区别。v-if会从dom清除该标签，v-show不会清除标签，而是改变display属性
+      <div v-if="show">v-if</div>
+      <div v-show="show">v-show</div>
+      <button @click="handleClick">toggle</button>
+      <ul>
+        <li v-for="(item,index) of list" :key="index">{{item}}</li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: '#root',
+        data: {
+          show: true,
+          list:
+          [1,2,3]
+        },
+        methods:{
+          handleClick: function(){
+            this.show = !this.show;
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

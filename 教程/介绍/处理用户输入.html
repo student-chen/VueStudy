@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang=cn dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>1.3处理用户输入</title>
+  </head>
+  <body>
+<div id = 'test5'>
+  <p>{{message}}</p>
+  <button type="button" v-on:click='reverseMessage'>一键翻转</button>
+</div>
+<div id='test6'>
+<p>{{message}}</p>
+<input type="text" v-model='message'>
+</div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- <script src="vue.min.js" charset="utf-8"></script> -->
+  <script type="text/javascript">
+    var app5 = new Vue({
+      el: '#test5',
+      data: {
+        message: '翻转这条消息'
+      },
+      methods:{
+        reverseMessage(){
+          this.message =  this.message.split('').reverse().join('')
+        }
+      }
+    })
+    var app6 = new Vue({
+      el: '#test6',
+      data: {
+        message:'这边输入'
+      }
+    })
+  </script>
+</html>

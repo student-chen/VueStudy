@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> new document </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript">
+    // 加载时候添加移动样式 每次添加或者删除重新渲染样式
+    window.onload = trstyle()
+
+    function trstyle() {
+      var trs = document.getElementsByTagName('tr');
+      for (var i = 1; i < trs.length; i++) {
+        trs[i].onmouseover = function () {
+          this.style.backgroundColor = "#f2f2f2";
+        }
+        trs[i].onmouseout = function () {
+          this.style.backgroundColor = "#fff";
+        }
+      }
+    }
+    // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+    // 通过输入框设定学号和姓名
+    function addtr() {
+      var snum = prompt('学号', '');
+      var sname = prompt('姓名', '');
+      var newtr = document.createElement('tr');
+      newtr.innerHTML = '<td>' + snum + '</td>' + '<td>' + sname + '</td>' +
+        '<td><a href="javascript:;" onclick="removetr(this)">删除</a></td>';
+      var lastc = document.getElementById("table").lastChild;
+      lastc.appendChild(newtr);
+      //重新渲染样式
+      trstyle();
+    }
+    // 创建删除函数 如果剩余一条 跳出警告不能再删除
+    function removetr(thistr) {
+      var trP = thistr.parentNode.parentNode;
+      var tableN = thistr.parentNode.parentNode.parentNode;
+      //获取长度
+      var l = tableN.getElementsByTagName("tr").length;
+      if (l == 2) {
+        alert("最后一条记录不准删除")
+      } else {
+        tableN.removeChild(trP);
+        trstyle();
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <table border="1" width="50%" id="table">
+    <tr>
+      <th>学号</th>
+      <th>姓名</th>
+      <th>操作</th>
+    </tr>
+
+    <tr>
+      <td>xh001</td>
+      <td>王小明</td>
+      <td><a href="javascript:;" onclick="removetr(this)">删除</a></td>
+      <!--在删除按钮上添加点击事件  -->
+    </tr>
+
+    <tr>
+      <td>xh002</td>
+      <td>刘小芳</td>
+      <td><a href="javascript:;" onclick="removetr(this)">删除</a></td>
+      <!--在删除按钮上添加点击事件  -->
+    </tr>
+
+  </table>
+  <input type="button" value="添加一行" onclick="addtr()" />
+  <!--在添加按钮上添加点击事件  -->
+</body>
+
+</html>

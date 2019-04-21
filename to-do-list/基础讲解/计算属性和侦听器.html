@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>计算属性和侦听器</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  </head>
+  <body>
+    <div id="root">
+      姓：<input v-model="firstname">
+      名：<input v-model="lastname">
+      <!-- 计算属性 只有当用来计算的属性发生改变的时候才会重新进行计算 -->
+      <div>{{fullname}}</div>
+      <div class="">
+        {{count}}
+      </div>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: '#root',
+        data:{
+          firstname: 'Lin',
+          lastname: 'Stan',
+          count :0
+        },
+        computed: {
+          fullname: function(){
+            return this.firstname+' '+this.lastname
+          }
+        },
+        // 侦听属性发生变化
+        watch: {
+          firstname: function(){
+            this.count++
+          },
+          lastname: function(){
+            this.count++
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

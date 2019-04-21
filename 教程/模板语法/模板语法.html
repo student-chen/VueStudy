@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ch" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>插值</h1>
+    <h2>文本</h2>
+
+    <div id="msg1">
+    <span >Message: {{ msg }}</span><p>
+    <span v-once>这个msg不会改变：{{msg}}</span>
+    </div>
+
+    <h2>原始HTML</h2>
+    <div id="originHtml">
+    <p>双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML，你需要使用 v-html 指令：</p>
+    Using mustaches: {{ rawHtml }}<p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <p>这个 span 的内容将会被替换成为属性值 rawHtml，直接作为 HTML——会忽略解析属性值中的数据绑定。
+      注意，你不能使用 v-html 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。
+      反之，对于用户界面 (UI)，组件更适合作为可重用和可组合的基本单位。</p>
+    </div>
+
+    <div id="texing">
+      <h2>特性</h2>
+      <p>Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令：</p>
+
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#msg1',
+        data:{
+          msg: "hello Vue"
+        }
+    })
+    var vm2 = new Vue({
+      el:'#originHtml',
+      data:{
+        rawHtml: "<span style='color:red'>this should be red</span>"
+      }
+    })
+  </script>
+</html>

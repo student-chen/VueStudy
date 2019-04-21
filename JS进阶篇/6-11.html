@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!-- 任务
+第一步： 创建构建运算函数count()。
+
+第二步： 获取两个输入框中的值和获取选择框的值。
+
+提示：document.getElementById( id名 ).value 获取或设置 id名的值。
+第三步： 获取通过下拉框来选择的值来改变加减乘除的运算法则。
+
+提示：使用switch判断运算法则。
+第四步： 通过 = 按钮来调用创建的函数，得到结果。
+
+注意: 使用parseInt()函数可解析一个字符串,并返回一个整数。 -->
+
+<head>
+  <title> 事件</title>
+  <script type="text/javascript">
+    function count() {
+      var num1 = parseInt(document.getElementById("txt1").value);
+      var num2 = parseInt(document.getElementById("txt2").value);
+      var opt = document.getElementById("select").value;
+      // var ret = 0;
+      //获取第一个输入框的值
+      //获取第二个输入框的值
+      //获取选择框的值
+      //获取通过下拉框来选择的值来改变加减乘除的运算法则
+      //设置结果输入框的值 
+      switch (opt) {
+        case "+":
+          ret = num1 + num2;
+          break;
+        case "-":
+          ret = num1 - num2;
+          break;
+        case "*":
+          ret = num1 * num2;
+          break;
+        case "/":
+          ret = num1 / num2;
+          break;
+      }
+      document.getElementById("fruit").value = ret;
+    }
+  </script>
+</head>
+
+<body>
+  <input type='text' id='txt1' />
+  <select id='select'>
+    <option value='+'>+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type='text' id='txt2' />
+  <input type='button' value=' = ' onclick="count()" />
+  <!--通过 = 按钮来调用创建的函数，得到结果-->
+  <input type='text' id='fruit' />
+</body>
+
+</html>

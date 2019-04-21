@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ToDoList</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  </head>
+  <body>
+    <div id="root">
+      <input v-model="inputvalue"/>
+      <button @click="updatadata">提交</button>
+    <ul>
+      <!-- content代表外部传参 -->
+      <todo-item
+      v-for="(item,index) of list"
+      :key="index"
+      :content="item"
+      :index="index"
+      ></todo-item>
+    </ul>
+  </div>
+    <script type="text/javascript">
+      // 全局组件，可以直接使用 每个组件都是一个实例
+      Vue.component('todo-item',{
+        //接收外部传入的content的属性
+        props: ['content','index'],
+        template: '<li @click="handleClick">{{content}}</li>',
+        methods: {
+          handleClick: function(){
+            alert('delete')
+          }
+        }
+      })
+      // 局部组件，需要在vue中注册components
+      // var TodoItem = {
+      //   template: '<li>item</li>'
+      // }
+
+      vm = new Vue({
+        el: '#root',
+        // components: {
+        //   'todo-item': TodoItem
+        // },
+        data: {
+          inputvalue: "hello",
+          list: []
+        },
+        methods: {
+          updatadata: function(){
+            this.list.push(this.inputvalue);
+            this.inputvalue='';
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

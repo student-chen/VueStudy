@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>无标题文档</title>
+  <style type="text/css">
+    .message {
+      width: 200px;
+      height: 100px;
+      background-color: #CCC;
+    }
+  </style>
+</head>
+
+<body>
+  <script type="text/javascript">
+    var newnode = document.createElement("p");
+    var te = document.createTextNode("I love JavaScript!");
+    newnode.className = "message"
+    newnode.appendChild(te)
+    document.body.appendChild(newnode);
+  </script>
+
+</body>
+
+</html>

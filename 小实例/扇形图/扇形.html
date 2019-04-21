@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>leetcode进度显示</title>
+  <script src="C:\Users\lh\github\VueStudy\vue.min.js" charset="utf-8"></script>
+  <script src="percent.js" charset="utf-8">
+    </script>
+</head>
+
+<body>
+  <!-- 绘制一个canvas用于绘制扇形 -->
+  <canvas id="canvas" height="200" width="200">your browser does not support the canvas tag </canvas>
+  <div id="shanx">
+    <input type="text" v-model="red" placeholder="red">
+    <h3>red</h3>
+    <input type="text" v-model="blue" placeholder="blue">
+    <h3>blue</h3>
+    <input type="text" v-model="pink" placeholder="pink">
+    <h3>pink</h3>
+    {{red}}
+    {{blue}}
+  </div>
+  <script type="text/javascript">
+    var app = new Vue(
+    {
+    el: '#shanx',
+    data: {
+    red: '',
+    blue: '',
+    pink:''
+    },
+    watch:{
+
+    red:function(val){
+    precent[0]=val/360;
+    init();
+    },
+    blue:function(val){
+    precent[1]=val/360;
+    init();
+    },
+    pink:function(val){
+    precent[2]=val/360;
+    init();
+    console.log(precent)
+    }
+    }
+    }
+    )
+    </script>
+</body>
+
+</html>

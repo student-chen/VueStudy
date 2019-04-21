@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>系好安全带,准备启航</title>
+  <!-- 效果图:  XXXX年XX月X日 星期X--班级总分为:81 -->
+  <script type="text/javascript">
+    //通过javascript的日期对象来得到当前的日期，并输出。
+    var myDate = new Date();
+    var weekDays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+    document.write(myDate.getFullYear() + "年" + myDate.getMonth() + "月" + myDate.getDay() + "日" +
+      weekDays[myDate.getDay()] + "--班级总分为：");
+    //成绩是一长窜的字符串不好处理，找规律后分割放到数组里更好操作哦
+    var scoreStr = "小明:87;小花:81;小红:97;小天:76;小张:74;小小:94;小西:90;小伍:76;小迪:64;小曼:76";
+    var ret = scoreStr.split(/[:;]/);
+    // document.write(ret)
+    var temp = 0;
+    for (let i = 1; i < ret.length - 1; i += 2) {
+      temp += parseInt(ret[i]);
+    }
+    document.write(Math.floor(temp / (ret.length / 2)))
+
+    //从数组中将成绩撮出来，然后求和取整，并输出。
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

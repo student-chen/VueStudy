@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>浏览器对象</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=gkb" />
+</head>
+
+<body>
+  <!--先编写好网页布局-->
+  <h1>操作成功</h1>
+
+  <span id="test1">5</span>秒后回到主页<a href="" onclick="jump()">返回</a>
+
+  <script type="text/javascript">
+    var num = 5;
+
+    function gets() {
+      //获取显示秒数的元素，通过定时器来更改秒数。
+      if (num > 0) {
+        num--;
+        document.getElementById('test1').innerHTML = num;
+      } else {
+        location.assign("https://www.bing.com");
+        clearInterval(i);
+      }
+    }
+
+    function jump() {
+      window.history.go(1);
+    }
+    var i = setInterval("gets()", 1000)
+    //通过window的location和history对象来控制网页的跳转。
+  </script>
+</body>
+
+</html>

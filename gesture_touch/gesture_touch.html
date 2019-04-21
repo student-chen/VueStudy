@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<!-- 触控实现单文件 -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>gesture_touch</title>
+  <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script>
+    function vueTouch(el, type, binding) {
+      this.el = el;
+      this.type = type;
+      this.binding = binding;
+      var hammertime = new Hammer(this.el);
+      hammertime.on(this.type, this.binding.value);
+    };
+    Vue.directive("tap", {
+      bind: function (el, binding) {
+        vueTouch(el, "tap", binding);
+      }
+    });
+    Vue.directive("swipeleft", {
+      bind: function (el, binding) {
+        vueTouch(el, "swipeleft", binding);
+      }
+    });
+    Vue.directive("swiperight", {
+      bind: function (el, binding) {
+        vueTouch(el, "swiperight", binding);
+      }
+    });
+    Vue.directive("press", {
+      bind: function (el, binding) {
+        vueTouch(el, "press", binding);
+      }
+    });
+
+  </script>
+</head>
+
+<body>
+  <div id="app" v-tap="tap" v-swipeleft="swipeleft" v-swiperight="swiperight" v-press="press">
+    <h1>{{name}}</h1>
+    <p>
+      此处也是触控区域
+    </p>
+  </div>
+  <script>
+    app = new Vue({
+      el: "#app",
+      data: {
+        name: "触控区域"
+      },
+      methods: {
+        tap: function (s, e) {
+          console.log("点击");
+        },
+        swipeleft: function (s, e) {
+          console.log("向左滑动:x偏移量[" + s.deltaX + "],y偏移量[" + s.deltaY + "]");
+        },
+        swiperight: function (s, e) {
+          console.log("向右滑动:x偏移量[" + s.deltaX + "],y偏移量[" + s.deltaY + "]");
+        },
+        press: function (s, e) {
+          console.log("长按")
+        },
+      },
+    });
+
+  </script>
+</body>
+
+</html>
